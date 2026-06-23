@@ -1,0 +1,4 @@
+# VU Assessment Practice Hub — Python dependencies
+# Pinned to minimum tested versions; Streamlit Community Cloud installs these automatically.
+streamlit>=1.32
+pandas>=2.0
