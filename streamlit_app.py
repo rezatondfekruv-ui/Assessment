@@ -818,22 +818,22 @@ def page_home() -> None:
             st.subheader("✨ Design Generator")
             st.write("Answer a few questions about your unit and generate a tailored MS Copilot "
                      "prompt set for a backward-designed, authentic, secure assessment structure.")
-            if st.button("Open Design Generator", use_container_width=True, key="home_dg"):
-                _goto("✨ Design Generator")
+            st.button("Open Design Generator", use_container_width=True, key="home_dg",
+                      on_click=_goto, args=("✨ Design Generator",))
     with c2:
         with st.container(border=True):
             st.subheader("🛠️ Tools")
             st.write("Build unit and course learning outcomes, craft rubrics, check your design "
                      "against VU Assessment Standards, and browse the standards reference.")
-            if st.button("Open Tools", use_container_width=True, key="home_tools"):
-                _goto("🛠️ Tools")
+            st.button("Open Tools", use_container_width=True, key="home_tools",
+                      on_click=_goto, args=("🛠️ Tools",))
     with c3:
         with st.container(border=True):
             st.subheader("📚 Resources")
             st.write("A curated, topic-filterable library of assessment design readings, guides, "
                      "frameworks and tools from VU and across the sector.")
-            if st.button("Open Resources", use_container_width=True, key="home_res"):
-                _goto("📚 Resources")
+            st.button("Open Resources", use_container_width=True, key="home_res",
+                      on_click=_goto, args=("📚 Resources",))
 
     st.write("")
     st.markdown(
@@ -861,8 +861,10 @@ This is a Streamlit rebuild of three VU Assessment Practice Hub pages, combined 
 
 
 def _goto(page_label: str) -> None:
+    """Switch pages from a button. Runs as an on_click callback — i.e. *before*
+    the sidebar radio is rebuilt on the next run — so assigning its widget key
+    ('nav') is permitted here (it is not once the widget exists in a run)."""
     st.session_state["nav"] = page_label
-    st.rerun()
 
 
 # ═════════════════════════════════════════════════════════════════════════════
